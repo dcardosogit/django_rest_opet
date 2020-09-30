@@ -8,3 +8,11 @@ class Serie(models.Model):
 
     def __str__(self):
         return self.serie_titulo
+
+class Episodio(models.Model):
+    episodio_serie = models.ForeignKey(Serie,on_delete=models.CASCADE)
+    episodio_titulo = models.CharField(max_length = 200)
+    episodio_avaliacao = models.FloatField()
+
+    def __str__(self):
+        return self.episodio_titulo

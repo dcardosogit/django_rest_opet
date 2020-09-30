@@ -1,8 +1,8 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import viewsets
 from rest_framework import permissions
-from .serializers import UserSerializer, GroupSerializer, SerieSerializer
-from .models import Serie
+from .serializers import UserSerializer, GroupSerializer, SerieSerializer, EpisodioSerializer
+from .models import Serie, Episodio
 from rest_framework_api_key.permissions import HasAPIKey
 # Create your views here.
 
@@ -19,4 +19,9 @@ class GroupViewSet(viewsets.ModelViewSet):
 class SerieViewSet(viewsets.ModelViewSet):
     queryset = Serie.objects.all()
     serializer_class = SerieSerializer
+    permission_classes = [HasAPIKey | permissions.IsAuthenticated]
+
+class EpisodioViewSet(viewsets.ModelViewSet):
+    queryset = Episodio.objects.all()
+    serializer_class = EpisodioSerializer
     permission_classes = [HasAPIKey | permissions.IsAuthenticated]
