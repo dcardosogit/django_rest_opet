@@ -16,3 +16,12 @@ class Episodio(models.Model):
 
     def __str__(self):
         return self.episodio_titulo
+
+class Review(models.Model):
+    review_serie = models.ForeignKey(Serie,on_delete=models.CASCADE)
+    review_titulo = models.CharField(max_length = 200)
+    review_texto = models.TextField()
+    review_avaliacao = models.FloatField()
+
+    def __str__(self):
+        return self.review_titulo
