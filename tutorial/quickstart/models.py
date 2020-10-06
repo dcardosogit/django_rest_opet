@@ -25,3 +25,25 @@ class Review(models.Model):
 
     def __str__(self):
         return self.review_titulo
+
+class Produtor(models.Model):
+    produtor_nome = models.CharField(max_length = 200)
+    produtor_series = models.ManyToManyField(Serie)
+
+    def __str__(self):
+        return self.produtor_nome
+
+class Ator(models.Model):
+    ator_nome = models.CharField(max_length = 200)
+    ator_nascimento = models.DateField()
+
+    def __str__(self):
+        return self.ator_nome
+
+class AtorSerie(models.Model):
+    ator = models.ForeignKey(Ator,on_delete=models.CASCADE)
+    serie = models.ForeignKey(Serie,on_delete=models.CASCADE)
+    nome_personagem = models.CharField(max_length = 200)
+
+    def __str__(self):
+        return self.nome_personagem
